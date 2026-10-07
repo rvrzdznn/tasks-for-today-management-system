@@ -9,7 +9,7 @@
 
     <title>Taskly — Profile</title>
 
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
 
 </head>
 

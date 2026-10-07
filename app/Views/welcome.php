@@ -41,6 +41,13 @@
             About
         </a>
 
+        <?php if (session()->get('isLoggedIn')): ?>
+            <a href="<?= base_url('tasks/new') ?>">New Task</a>
+            <a href="<?= base_url('logout') ?>">Logout</a>
+        <?php else: ?>
+            <a href="<?= base_url('login') ?>">Login</a>
+        <?php endif; ?>
+
     </div>
 
 </nav>
@@ -168,6 +175,15 @@
                             <?= esc($task['status']) ?>
 
                         </span>
+
+                        <?php if (session()->get('isLoggedIn')): ?>
+                            <div style="margin-top:10px;">
+                                <a href="<?= base_url('tasks/edit/' . $task['id']) ?>">Edit</a>
+                                <form action="<?= base_url('tasks/delete/' . $task['id']) ?>" method="post" style="display:inline;">
+                                    <button type="submit">Archive</button>
+                                </form>
+                            </div>
+                        <?php endif; ?>
 
                     </div>
 

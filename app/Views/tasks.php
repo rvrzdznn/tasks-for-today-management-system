@@ -9,8 +9,7 @@
 
     <title>Taskly — All Tasks</title>
 
-    <link rel="stylesheet" href="/css/style.css">
-
+    <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
 </head>
 
 <body>
@@ -38,6 +37,13 @@
         <a href="<?= base_url('about') ?>">
             About
         </a>
+
+        <?php if (session()->get('isLoggedIn')): ?>
+            <a href="<?= base_url('tasks/new') ?>">New Task</a>
+            <a href="<?= base_url('logout') ?>">Logout</a>
+        <?php else: ?>
+            <a href="<?= base_url('login') ?>">Login</a>
+        <?php endif; ?>
 
     </div>
 
@@ -166,6 +172,15 @@
                             <?= esc($task['status']) ?>
 
                         </span>
+
+                        <?php if (session()->get('isLoggedIn')): ?>
+                            <div style="margin-top:10px;">
+                                <a href="<?= base_url('tasks/edit/' . $task['id']) ?>">Edit</a>
+                                <form action="<?= base_url('tasks/delete/' . $task['id']) ?>" method="post" style="display:inline;">
+                                    <button type="submit">Archive</button>
+                                </form>
+                            </div>
+                        <?php endif; ?>
 
                     </div>
 
